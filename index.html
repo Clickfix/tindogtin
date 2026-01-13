@@ -1,179 +1,428 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>TinDog</title>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Government Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #27ae60 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero {
+            padding: 8rem 0;
+            text-align: center;
+            color: black;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/frontview1.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        .hero .btn {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .hero .btn:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+        }
+        .section {
+            padding: 4rem 0;
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        img:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        #leadership {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        }
+        #staff {
+            background: linear-gradient(135deg, #a29bfe, #fd79a8);
+        }
+        #activities {
+            background: linear-gradient(135deg, #00cec9, #55a3ff);
+        }
+        .chairman {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .leadership-card {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .leadership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .leadership-card .frame {
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6, #3498db, #27ae60);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .leadership-card img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .staff-card {
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .staff-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .activity-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .activity-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .activity-card .content {
+            padding: 1rem;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        @media (max-width: 768px) {
+            nav label {
+                display: block !important;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 10;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: rgba(52, 152, 219, 0.9);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                border-radius: 0 0 10px 10px;
+                z-index: 9;
+            }
+            nav input:checked ~ ul {
+                display: flex;
+            }
+            nav li {
+                margin: 0.5rem 0;
+            }
+            nav a {
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+            }
+            .hero {
+                padding: 3rem 0;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .chairman {
+                flex-direction: column;
+                text-align: center;
+            }
+            .chairman img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            .staff-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center;">
+                <img src="images/logo2.jpeg" alt="Local Government Association Logo" style="height: 50px;">
+                <h1 style="margin: 0; margin-left: 1rem;">Local Government</h1>
+            </div>
+            <nav>
+                <input type="checkbox" id="nav-toggle" style="display: none;">
+                <label for="nav-toggle" style="display: none; font-size: 30px; cursor: pointer; color: white;">&#9776;</label>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#staff">Staff</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <section id="title">
+    <section id="about" class="hero">
+        <div class="container">
+            <a href="#activities" class="btn">Learn More About Our Programs</a>
+        </div>
+    </section>
 
-    <div class="container-fluid">
+    <section id="leadership" class="section">
+        <div class="container">
+            <h2>Our Leadership Team</h2>
+            <div class="leadership-grid">
+                <div class="leadership-card">
+                    <div class="frame">
+                        <img src="data:image/jpeg;base64,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" alt="Chairman">
+                    </div>
+                    <h3>Pres. Bola Ahmed Tinubu</h3>
+                    <p>Chairman, Local Government Association</p>
+                    <p>With over 20 years of experience in public administration, our chairman leads the association in driving community development initiatives that make a lasting impact.</p>
+                </div>
+                <div class="leadership-card">
+                    <div class="frame">
+                        <img src="data:image/jpeg;base64,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" alt="Vice Chairman">
+                    </div>
+                    <h3>Babajide Sanwo-Olu</h3>
+                    <p>Vice Chairman, Local Government Association</p>
+                    <p>As vice chairman, she supports strategic planning and ensures smooth implementation of community programs with her expertise in organizational development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section id="staff" class="section">
+        <div class="container">
+            <h2>Our Staff</h2>
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <img src="https://randomuser.me/api/portraits/women/1.jpg?nat=ke" alt="Staff Member">
+                    <h4>Jane Smith</h4>
+                    <p>Program Director</p>
+                    <p>Present Staff</p>
+                </div>
+                <div class="staff-card">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg?nat=eg" alt="Staff Member">
+                    <h4>Michael Johnson</h4>
+                    <p>Community Outreach Coordinator</p>
+                    <p>Present Staff</p>
+                </div>
+                <div class="staff-card">
+                    <img src="https://randomuser.me/api/portraits/women/3.jpg?nat=ma" alt="Staff Member">
+                    <h4>Sarah Wilson</h4>
+                    <p>Administrative Assistant</p>
+                    <p>Present Staff</p>
+                </div>
+                <div class="staff-card">
+                    <img src="https://randomuser.me/api/portraits/men/4.jpg?nat=gh" alt="Staff Member">
+                    <h4>David Brown</h4>
+                    <p>Field Coordinator</p>
+                    <p>Present Staff</p>
+                </div>
+                <div class="staff-card">
+                    <img src="https://randomuser.me/api/portraits/women/5.jpg?nat=et" alt="Staff Member">
+                    <h4>Emily Davis</h4>
+                    <p>Volunteer Coordinator</p>
+                    <p>Past Staff</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Nav Bar -->
+    <section id="activities" class="section">
+        <div class="container">
+            <h2>Our Community Development Programs</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Community+Workshop" alt="Community Workshop">
+                    <div class="content">
+                        <h4>Community Workshops</h4>
+                        <p>Educational sessions on local governance, citizen participation, and community planning to empower residents.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Youth+Programs" alt="Youth Programs">
+                    <div class="content">
+                        <h4>Youth Empowerment Initiatives</h4>
+                        <p>Programs designed to engage young people in community development and prepare them for leadership roles.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=Infrastructure+Projects" alt="Infrastructure Projects">
+                    <div class="content">
+                        <h4>Infrastructure Development</h4>
+                        <p>Collaborative projects to improve local infrastructure, including community centers and public facilities.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=Environmental+Programs" alt="Environmental Programs">
+                    <div class="content">
+                        <h4>Environmental Sustainability</h4>
+                        <p>Initiatives focused on environmental conservation, waste management, and sustainable development practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <nav class="navbar navbar-expand-lg bg">
-      <a class="navbar-brand" href="">Click Fix Technology</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto">
-          <li class="dropdown">
-            <a class="nav-link" href="">Contact</a>
-          </li>
-          <li>
-            <a class="nav-link" href="">Price</a>
-          </li>
-          <li>
-            <a class="nav-link" href="">Menu</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-
-    <!-- Title -->
-
-    <div class="row">
-
-      <div class="col-lg-6">
-        <h1>Meet new and interesting dogs nearby.</h1>
-        <button type="button" class="btn btn-dark btn-lg">>Download</button>
-        <button type="button" class="btn btn-outline-light btn-lg">Download</button>
-      </div>
-
-      <div class="col-lg-6">
-        <img class="title-image" src="images/iphone6.png" alt="iphone-mockup">
-      </div>
-
-    </div>
-
-    </div>
-
-
-  </section>
-
-
-  <!-- Features -->
-
-  <section id="features">
-
-    <div>
-
-      <div class="feature-box col-lg-4">
-        <h3>Easy to use.</h3>
-        <p>So easy to use, even your dog could do it.</p>
-      </div>
-
-      <div class="feature-box col-lg-4">
-        <h3>Elite Clientele</h3>
-        <p>We have all the dogs, the greatest dogs.</p>
-      </div>
-
-      <div class="feature-box col-lg-4">
-        <h3>Guaranteed to work.</h3>
-        <p>Find the love of your dog's life or your money back.</p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- Testimonials -->
-
-  <section id="testimonials">
-
-    <h2>I no longer have to sniff other dogs for love. I've found the hottest Corgi on TinDog. Woof.</h2>
-    <img src="images/dog-img.jpg" alt="dog-profile">
-    <em>Pebbles, New York</em>
-
-    <!-- <h2 class="testimonial-text">My dog used to be so lonely, but with TinDog's help, they've found the love of their life. I think.</h2>
-    <img class="testimonial-image" src="images/lady-img.jpg" alt="lady-profile">
-    <em>Beverly, Illinois</em> -->
-
-  </section>
-
-
-  <!-- Press -->
-
-  <section id="press">
-    <img src="images/techcrunch.png" alt="tc-logo">
-    <img src="images/tnw.png" alt="tnw-logo">
-    <img src="images/bizinsider.png" alt="biz-insider-logo">
-    <img src="images/mashable.png" alt="mashable-logo">
-
-  </section>
-
-
-  <!-- Pricing -->
-
-  <section id="pricing">
-
-    <h2>A Plan for Every Dog's Needs</h2>
-    <p>Simple and affordable price plans for your and your dog.</p>
-
-
-    <h3>Chihuahua</h3>
-    <h2>Free</h2>
-    <p>5 Matches Per Day</p>
-    <p>10 Messages Per Day</p>
-    <p>Unlimited App Usage</p>
-    <button type="button">Sign Up</button>
-
-
-    <h3>Labrador</h3>
-    <h2>$49 / mo</h2>
-    <p>Unlimited Matches</p>
-    <p>Unlimited Messages</p>
-    <p>Unlimited App Usage</p>
-    <button type="button">Sign Up</button>
-
-
-    <h3>Mastiff</h3>
-    <h2>$99 / mo</h2>
-    <p>Pirority Listing</p>
-    <p>Unlimited Matches</p>
-    <p>Unlimited Messages</p>
-    <p>Unlimited App Usage</p>
-    <button type="button">Sign Up</button>
-
-  </section>
-
-
-  <!-- Call to Action -->
-
-  <section id="cta">
-
-    <h3>Find the True Love of Your Dog's Life Today.</h3>
-    <button type="button">Download</button>
-    <button type="button">Download</button>
-
-  </section>
-
-
-  <!-- Footer -->
-
-  <footer id="footer">
-
-    <p>© Copyright 2018 TinDog</p>
-
-  </footer>
-
-
+    <footer id="contact">
+        <div class="container">
+            <h3>Contact Us</h3>
+            <p>Email: info@localgovt.org</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Community Street, Local City, ST 12345</p>
+            <p>&copy; 2024 Local Government Association. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('change', function() {
+            const ul = document.querySelector('nav ul');
+            if (this.checked) {
+                ul.style.display = 'flex';
+            } else {
+                ul.style.display = 'none';
+            }
+        });
+    </script>
 </body>
-
 </html>
